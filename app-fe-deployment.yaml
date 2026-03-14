@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app-fe-deployment
+  name: app-fe-deployment
+  namespace: health-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-fe-deployment
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: app-fe-deployment
+    spec:
+      containers:
+      - image: tmatteo99/test-mui:latest
+        name: test-mui
+        ports:
+          - containerPort: 80
+        resources: {}
+status: {}

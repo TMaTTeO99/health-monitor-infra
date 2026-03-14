@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: url-health-monitor
+  name: app-deployment
+  namespace: health-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: url-health-monitor
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: url-health-monitor
+    spec:
+      containers:
+      - image: tmatteo99/url-health-monitor:latest
+        name: url-health-monitor
+        ports:
+          - containerPort: 8080
+        env:
+          - name: VIRUSTOTAL_BASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: app-configmap
+                key: virustotal-base-url
+          - name: ANALIZE_URL_BASE_URL   
+            valueFrom:
+              configMapKeyRef:
+                name: app-configmap
+                key: virustotal-analize-url
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: app-configmap
+                key: db-host
+          - name: DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: app-configmap
+                key: db-port
+          - name: DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: app-configmap
+                key: db-name
+          - name: PREFIX
+            valueFrom:
+              configMapKeyRef:
+                name: app-configmap
+                key: db-prefix
+          - name: SERVER_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: app-configmap
+                key: sv-host
+          - name: SERVER_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: app-configmap
+                key: sv-port
+          - name: DB_USER_NAME
+            valueFrom:
+              secretKeyRef:
+                name: app-secret
+                key: postgres-user
+          - name: USER_PASSWD
+            valueFrom:
+              secretKeyRef:
+                name: app-secret
+                key: postgres-password
+          - name: VIRUSTOTAL_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: app-secret
+                key: visrus-total-key
+      resources: {}
+status: {}

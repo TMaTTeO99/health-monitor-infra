@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: health-monitor
+spec:
+  rules:
+  - host: matte.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: service-to-ingress-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer: {}

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-configmap
+  namespace: health-monitor
+data:
+  virustotal-base-url: https://www.virustotal.com/api/v3/urls
+  virustotal-analize-url: https://www.virustotal.com/api/v3/analyses
+  db-host: db-be-service
+  db-port: "5432"
+  db-name: postgres
+  db-prefix: postgres
+  sv-host: 0.0.0.0
+  sv-port: "8080"
