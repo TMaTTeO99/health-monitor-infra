@@ -17,7 +17,7 @@ spec:
         app: app-fe-deployment
     spec:
       containers:
-      - image: tmatteo99/test-mui:latest
+      - image: tmatteo99/test-mui:c82ee354909024f42ae526ff1dafe604b9817d70
         name: test-mui
         ports:
           - containerPort: 80
