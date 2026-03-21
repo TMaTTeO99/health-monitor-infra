@@ -17,7 +17,7 @@ spec:
         app: url-health-monitor
     spec:
       containers:
-      - image: tmatteo99/url-health-monitor:86de3969818f5da6f298dc8260ec246cd2e64721
+      - image: tmatteo99/url-health-monitor:d3f066e6b1ccaa3c19d946f5fc64b3d4caae4fe1
         name: url-health-monitor
         ports:
           - containerPort: 8080
